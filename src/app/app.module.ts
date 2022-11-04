@@ -5,6 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MaterialExampleModule} from '../matril.module';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +19,12 @@ import { LoginComponent } from './components/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialExampleModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
