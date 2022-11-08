@@ -7,17 +7,24 @@
     <input matInput formControlName="name">
     <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
   </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>UserName</mat-label>
-    <input matInput formControlName="userName">
-    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
-  </mat-form-field>
   
   <mat-form-field appearance="fill" class="mb-2">
     <mat-label>Email</mat-label>
     <input matInput placeholder="pat@example.com" formControlName="email" required>
     <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="one">Primary one </mat-option>
+      <mat-option value="two">Primary Two</mat-option>
+      <mat-option value="three">Primary Three</mat-option>
+      <mat-option value="four">Primary Four</mat-option>
+      <mat-option value="five">Primary Five</mat-option>
+      <mat-option value="six">Primary Six</mat-option>
+    </mat-select>
+    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
   </mat-form-field>
   
   <mat-form-field appearance="fill" class="mb-2">
