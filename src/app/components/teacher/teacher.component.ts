@@ -1,7 +1,7 @@
-import { Component  , Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { AddStudentForm } from '../students/students.component';
 
 export interface PeriodicElement {
   name: string;
@@ -23,15 +23,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
 ];
 
+
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.scss']
+  selector: 'app-teacher',
+  templateUrl: './teacher.component.html',
+  styleUrls: ['./teacher.component.scss']
 })
-export class StudentsComponent implements OnInit {
+export class TeacherComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-
   constructor(public dilaog: MatDialog) { }
 
   openDialog(): void{
@@ -44,26 +44,25 @@ export class StudentsComponent implements OnInit {
     });
   }
 
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  
+
   ngOnInit(): void {
-    console.log(this.dataSource.data.length);
-    
   }
 
 }
 
 @Component({
-  selector: 'add-student-form',
-  templateUrl: './add-student-form.html',
-  styleUrls: ['./students.component.scss']
+  selector: 'add-teacher-form',
+  templateUrl: 'add-teacher-form.html',
+  styleUrls: ['./teacher.component.scss']
 })
-export class AddStudentForm{
-  constructor(public dialogRef: MatDialogRef<AddStudentForm>){}
+export class AddTeacherForm{
+  constructor(public dialogRef: MatDialogRef<AddTeacherForm>){}
   onNoClick():void{
     this.dialogRef.close();
   }

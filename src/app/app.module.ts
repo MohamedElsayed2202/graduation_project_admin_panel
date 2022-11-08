@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { StudentsComponent, AddStudentForm } from './components/students/students.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { StudentsComponent, AddStudentForm } from './components/students/student
     LoginComponent,
     DashbordComponent,
     StudentsComponent,
-    AddStudentForm
+    AddStudentForm,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,
