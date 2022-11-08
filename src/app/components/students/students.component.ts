@@ -1,4 +1,5 @@
 import { Component  , Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -21,11 +22,13 @@ export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor(public dilaog: MatDialog) { }
 
+
+  constructor(public dilaog: MatDialog) { }
+  
   openDialog(): void{
     const dialogRef = this.dilaog.open(AddStudentForm,{
-      width:'250px'
+      width:'400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,10 +51,44 @@ export class StudentsComponent implements OnInit {
 
 @Component({
   selector: 'add-student-form',
-  templateUrl: './add-student-form.html'
+  templateUrl: './add-student-form.html',
+  styleUrls: ['./students.component.scss']
 })
-export class AddStudentForm{
-  constructor(public dialogRef: MatDialogRef<AddStudentForm>){}
+export class AddStudentForm {
+  addStudentForm: FormGroup;
+  hide = true;
+  constructor(public dialogRef: MatDialogRef<AddStudentForm>){
+    this.addStudentForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      userName :new FormControl("", Validators.required),
+      email: new FormControl("",[Validators.required, Validators.email]),
+      password: new FormControl("", Validators.required)
+    })
+  }
+  get formControlles(){
+    return this.addStudentForm.controls;
+  }
+  getNameErrorMessage(){
+    if (this.addStudentForm.controls['name'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.addStudentForm.controls['name'].hasError('name') ? 'Not a valid name' : '';
+  }
+  getEmailErrorMessage() {
+    console.log("mmmm");
+    
+    if (this.addStudentForm.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.addStudentForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.addStudentForm.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return ''
+  }
   onNoClick():void{
     this.dialogRef.close();
   }
