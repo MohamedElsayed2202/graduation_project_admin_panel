@@ -6,18 +6,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DashbordComponent } from './components/dashbord/dashbord.component';
+import { StudentsComponent, AddStudentForm } from './components/students/students.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashbordComponent,
+    StudentsComponent,
+    AddStudentForm
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
-    MatNativeDateModule,
     MaterialExampleModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

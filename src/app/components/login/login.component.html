@@ -1,16 +1,25 @@
-<div class="example-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill" floatLabel="always">
-      <mat-label>Amount</mat-label>
-      <input matInput type="number" class="example-right-align" placeholder="0">
-      <span matPrefix>$&nbsp;</span>
-      <span matSuffix>.00</span>
-    </mat-form-field>
-  </div>
+<section>
+    <div class="container vh-100">
+        <div class="d-flex justify-content-center align-items-center w-100 h-100">
+          <div class="example-container" [formGroup]="adminLoginForm">
+            <h1 class="text-center fw-bolder pb-3">Login</h1>
+            <mat-form-field appearance="fill" class="mb-2">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" required>
+                <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="mb-2">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-flat-button class="btn-login">Login</button>
+        </div>
+        </div>
+    </div>
+</section>

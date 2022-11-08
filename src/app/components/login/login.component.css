@@ -1,0 +1,84 @@
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.example-container {
+  width: 100%;
+  padding-top: 9%;
+  padding-bottom: 10%;
+  margin: auto;
+  margin-top: 10%;
+  border-radius: 3px;
+  background-color: white;
+  color: gray;
+}
+.example-container h1 {
+  font-size: 35px !important;
+}
+.example-container .mat-form-field {
+  width: 85%;
+  margin-left: 8%;
+}
+.example-container .btn-login {
+  margin-left: 8%;
+  width: 85%;
+  height: 45px;
+  color: white;
+  border-radius: 0px !important;
+  background-image: linear-gradient(to right, rgb(183, 225, 250), rgb(221, 190, 204));
+}
+
+@media (min-width: 768px) {
+  .example-container {
+    width: 75%;
+  }
+  .example-container .mat-form-field {
+    width: 85%;
+    margin-left: 8%;
+  }
+  .example-container .btn-login {
+    margin-left: 8%;
+    width: 85%;
+  }
+}
+@media (min-width: 992px) {
+  .example-container {
+    margin-top: 10%;
+    width: 45%;
+  }
+  .example-container .mat-form-field {
+    width: 85%;
+    margin-left: 8%;
+  }
+  .example-container .btn-login {
+    margin-left: 8%;
+    width: 85%;
+  }
+}
+@media (min-width: 1200px) {
+  .example-container {
+    margin-top: 10%;
+    width: 45%;
+  }
+  .example-container .mat-form-field {
+    width: 85%;
+    margin-left: 8%;
+  }
+  .example-container .btn-login {
+    margin-left: 8%;
+    width: 85%;
+  }
+}/*# sourceMappingURL=login.component.css.map */
