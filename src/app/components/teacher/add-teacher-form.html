@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Add New Teacher</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addTeacherForm">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label> Name</mat-label>
+      <input matInput type="text" formControlName="name" required>
+      <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill" class="full-width">
+      <mat-label>UserName</mat-label>
+      <input matInput formControlName="userName">
+      <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill" class="mb-2 full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="pat@example.com" formControlName="email" required>
+      <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mb-2 full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+      <button mat-button color="primary" [disabled]="addTeacherForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>

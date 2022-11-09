@@ -1,38 +1,38 @@
 <h1 mat-dialog-title>Add New Student</h1>
- <div mat-dialog-content >
-<form [formGroup]="addStudentForm">
-  
-  <mat-form-field appearance="fill">
-    <mat-label> Name</mat-label>
-    <input matInput formControlName="name">
-    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
-  </mat-form-field>
+<div mat-dialog-content>
+  <form [formGroup]="addStudentForm">
 
-  <mat-form-field appearance="fill">
-    <mat-label>UserName</mat-label>
-    <input matInput formControlName="userName">
-    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill" class="mb-2">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="pat@example.com" formControlName="email" required>
-    <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill" class="mb-2">
-    <mat-label>Password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label> Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button cdkFocusInitial>Ok</button>
-  </div>
-</form>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>UserName</mat-label>
+      <input matInput formControlName="userName">
+      <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mb-2 full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required>
+      <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mb-2 full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">No Thanks</button>
+      <button mat-button cdkFocusInitial>Ok</button>
+    </div>
+  </form>
 </div>
-

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddStudentForm } from '../students/students.component';
@@ -35,8 +36,8 @@ export class TeacherComponent implements OnInit {
   constructor(public dilaog: MatDialog) { }
 
   openDialog(): void{
-    const dialogRef = this.dilaog.open(AddStudentForm,{
-      width:'400px'
+    const dialogRef = this.dilaog.open(AddTeacherForm,{
+      width:'400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -62,7 +63,43 @@ export class TeacherComponent implements OnInit {
   styleUrls: ['./teacher.component.scss']
 })
 export class AddTeacherForm{
-  constructor(public dialogRef: MatDialogRef<AddTeacherForm>){}
+  addTeacherForm: FormGroup;
+  hide = true;
+  constructor(public dialogRef: MatDialogRef<AddTeacherForm>){
+    this.addTeacherForm = new FormGroup({
+      name: new FormControl("", Validators.required),
+      email: new FormControl("",[Validators.required, Validators.email]),
+      password: new FormControl("", Validators.required)
+    })
+  }
+
+  get formControlles(){
+    return this.addTeacherForm.controls;
+  }
+  getNameErrorMessage(){
+    if (this.addTeacherForm.controls['name'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.addTeacherForm.controls['name'].hasError('name') ? 'Not a valid name' : '';
+  }
+  getEmailErrorMessage() {
+    if (this.addTeacherForm.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.addTeacherForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.addTeacherForm.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return ''
+  }
+
+  onSubmit(): void{
+    
+  }
+
   onNoClick():void{
     this.dialogRef.close();
   }

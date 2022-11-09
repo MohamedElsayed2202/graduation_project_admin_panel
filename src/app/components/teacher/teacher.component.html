@@ -1,8 +1,8 @@
 <ng-container *ngIf="dataSource.data.length === 0">
     <div class="container h-100">
         <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
-            <button mat-raised-button color="primary" (click)="openDialog()" class="fit-content">Add Student</button>
-            <p class="text-secondary">No students to show pleas add students first</p>
+            <button mat-raised-button color="primary" (click)="openDialog()" class="fit-content">Add Teacher</button>
+            <p class="text-secondary">No teacher to show pleas add teacher first</p>
         </div>
     </div>
 </ng-container>
@@ -14,7 +14,7 @@
                     <mat-label>Filter</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
                 </mat-form-field>
-                <button mat-raised-button color="primary" (click)="openDialog()" class="fit-content">Add Student</button>
+                <button mat-raised-button color="primary" (click)="openDialog()" class="fit-content">Add Teacher</button>
             </div>
 
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-12">
