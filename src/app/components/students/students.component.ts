@@ -11,18 +11,15 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  displayedColumns: string[] = ['No', 'name', 'email', 'Level'];
+  displayedColumns: string[] = ['ID', 'name', 'email', 'grade', 'action'];
   dataSource = new MatTableDataSource<Student>([]);
 
   constructor(public dilaog: MatDialog, private studentService: StudentService) { }
   
   openDialog(): void{
     const dialogRef = this.dilaog.open(AddStudentForm,{
-      width:'400px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      width:'400px',
+      data: {student: null}
     });
   }
 
@@ -31,10 +28,20 @@ export class StudentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  
+  update(student: Student){
+    this.dilaog.open(AddStudentForm,{
+      width:'400px',
+      data: {student: student}
+    })
+  }
+
+  delete(id: string){
+    this.studentService.delete(id);
+  }
+
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(value => {
-      this.dataSource.data = value;
+      this.dataSource.data = value;   
     })
   }
 
@@ -48,22 +55,33 @@ export class StudentsComponent implements OnInit {
 export class AddStudentForm {
   addStudentForm: FormGroup;
   hide = true;
-  constructor(public dialogRef: MatDialogRef<AddStudentForm>){
-    this.addStudentForm = new FormGroup({
-      name: new FormControl("", Validators.required),
-      userName :new FormControl("", Validators.required),
-      email: new FormControl("",[Validators.required, Validators.email]),
-      password: new FormControl("", Validators.required)
-    })
+  grade: string = '';
+  constructor(public dialogRef: MatDialogRef<AddStudentForm>, private studentService: StudentService, @Inject(MAT_DIALOG_DATA) public data: {student: Student}){
+    if(data.student === null){
+      this.addStudentForm = new FormGroup({
+        name: new FormControl("", Validators.required),
+        grade :new FormControl("", Validators.required),
+        email: new FormControl("",[Validators.required, Validators.email]),
+        password: new FormControl("", Validators.required)
+      })
+    }else{
+      this.addStudentForm = new FormGroup({
+        name: new FormControl(data.student.name, Validators.required),
+        grade :new FormControl(data.student.grade, Validators.required),
+        email: new FormControl(data.student.email,[Validators.required, Validators.email]),
+        password: new FormControl(data.student.password, Validators.required)
+      })
+    }
+    
   }
   get formControlles(){
     return this.addStudentForm.controls;
   }
   getNameErrorMessage(){
-    if (this.addStudentForm.controls['name'].hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.addStudentForm.controls['name'].hasError('name') ? 'Not a valid name' : '';
+    return this.addStudentForm.controls['name'].hasError('required')? 'You must enter a value' : '';
+  }
+  getGradeErrorMessage(){
+    return this.addStudentForm.controls['grade'].hasError('required')? 'You must select a grade' : '';
   }
   getEmailErrorMessage() {
     if (this.addStudentForm.controls['email'].hasError('required')) {
@@ -73,10 +91,31 @@ export class AddStudentForm {
   }
 
   getPasswordErrorMessage() {
-    if (this.addStudentForm.controls['password'].hasError('required')) {
-      return 'You must enter a value';
+    return this.addStudentForm.controls['password'].hasError('required') ?'You must enter a value': '';
+    
+  }
+
+  onSubmit():void{
+    if(this.data.student === null){
+      let student: Student = {
+        name: this.addStudentForm.controls['name'].value,
+        email: this.addStudentForm.controls['email'].value,
+        password: this.addStudentForm.controls['password'].value,
+        grade: this.addStudentForm.controls['grade'].value
+      }
+      this.studentService.addStudent(student);
+      this.dialogRef.close();
+    }else{
+      let student: Student ={
+        _id: this.data.student._id,
+        name: this.addStudentForm.controls['name'].value,
+        email: this.addStudentForm.controls['email'].value,
+        password: this.addStudentForm.controls['password'].value,
+        grade: this.addStudentForm.controls['grade'].value
+      }
+      this.studentService.updateStudent(student);
+      this.dialogRef.close();
     }
-    return ''
   }
   onNoClick():void{
     this.dialogRef.close();

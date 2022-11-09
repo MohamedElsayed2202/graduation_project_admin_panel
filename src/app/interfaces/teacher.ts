@@ -1,7 +1,7 @@
-export interface Student {
+export interface Teacher {
     _id?: string,
     name: string,
     email: string,
     password: string,
-    grade: string
+    type?: string
 }

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { StudentsComponent, AddStudentForm } from './components/students/students.component';
 import { TeacherComponent,AddTeacherForm } from './components/teacher/teacher.component';
+import { GradeComponent } from './components/grade/grade.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TeacherComponent,AddTeacherForm } from './components/teacher/teacher.co
     StudentsComponent,
     AddStudentForm,
     TeacherComponent,
-    AddTeacherForm
+    AddTeacherForm,
+    GradeComponent
   ],
   imports: [
     BrowserModule,

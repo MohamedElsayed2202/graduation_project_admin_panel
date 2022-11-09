@@ -1,16 +1,7 @@
-// table {
-//     width: 100%;
-//   }
-  
+
 .full-width{
     width: 100%;
 } 
-// .fit-content{
-//     background-image: linear-gradient( to left ,rgb(206, 226, 238) ,rgb(104, 188, 236), rgb(8, 107, 164));
-//     width: 160px !important;
-//     height: 45px !important;
-// }
-
 
 .content{
     width: 80%;
@@ -18,4 +9,15 @@
 .fit-content{
     height: fit-content;
     width: fit-content;
+}
+
+.mat-dialog-content{
+    height: 383px;
+}
+
+.fab-pos{
+    position: absolute;
+    right: 6%;
+    bottom: 6%;
+    z-index: 5;
 }

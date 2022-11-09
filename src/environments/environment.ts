@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  StudentApi: 'http://localhost:8080/api/v1/student'
+  StudentApi: 'http://localhost:8080/api/v1/student',
+  TeacherApi: 'http://localhost:8080/api/v1/teacher',
+  GradeApi: 'http://localhost:8080/api/v1/grade'
 };
 
 /*
