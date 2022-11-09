@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 html, body {
-  background-image: linear-gradient(to right, rgb(183, 225, 250), rgb(221, 190, 204));
+  background-image: linear-gradient( to right ,rgb(206, 226, 238) ,rgb(104, 188, 236), rgb(8, 107, 164));
 }
 
 body {
