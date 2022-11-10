@@ -12,7 +12,18 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button color="primary">Going</button>
+      <div class="d-flex justify-content-between">
+        <!-- <button mat-button color="primary">Going</button> -->
+        <button mat-icon-button [mat-menu-trigger-for]="aboveMenu" aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #aboveMenu="matMenu" yPosition="above">
+            <button mat-menu-item>Edite</button>
+            <button mat-menu-item>Delete</button>
+          </mat-menu>
+        </button>
+      </div>
+      
+
     </mat-card-actions>
   </mat-card>
   
