@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Add New Event</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addeventForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error *ngIf="formControlles['title'].invalid">{{getTitleErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width mb-2"> 
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="formControlles['date'].invalid">{{getDateErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width mb-2">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+        <mat-error *ngIf="formControlles['description'].invalid">{{getDescriptionErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="fill" class="full-width mb-2">
+        <mat-label>Choose a image</mat-label>
+        <input  matInput formControlName="image">
+        <mat-error *ngIf="formControlles['image'].invalid">{{getimageErrorMessage()}}</mat-error>
+      </mat-form-field> -->
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" id="formFile">
+      </div>
+
+    <div mat-dialog-actions>
+      <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+      <button mat-button type="submit" color="primary" [disabled]="addeventForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>

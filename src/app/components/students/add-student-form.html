@@ -1,45 +1,45 @@
 <h1 mat-dialog-title>Add New Student</h1>
- <div mat-dialog-content >
-<form [formGroup]="addStudentForm">
-  
-  <mat-form-field appearance="fill">
-    <mat-label> Name</mat-label>
-    <input matInput formControlName="name">
-    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill" class="mb-2">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="pat@example.com" formControlName="email" required>
-    <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
-  </mat-form-field>
+<div mat-dialog-content>
+  <form [formGroup]="addStudentForm" (ngSubmit)="onSubmit()">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
-    <mat-select>
-      <mat-option value="one">Primary one </mat-option>
-      <mat-option value="two">Primary Two</mat-option>
-      <mat-option value="three">Primary Three</mat-option>
-      <mat-option value="four">Primary Four</mat-option>
-      <mat-option value="five">Primary Five</mat-option>
-      <mat-option value="six">Primary Six</mat-option>
-    </mat-select>
-    <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
-  </mat-form-field>
-  
-  <mat-form-field appearance="fill" class="mb-2">
-    <mat-label>Password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label> Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
 
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button cdkFocusInitial>Ok</button>
-  </div>
-</form>
+    <mat-form-field appearance="fill" class="mb-2 full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required >
+      <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Grade</mat-label>
+      <mat-select formControlName="grade"> 
+        <mat-option value="one">Primary one </mat-option>
+        <mat-option value="two">Primary Two</mat-option>
+        <mat-option value="three">Primary Three</mat-option>
+        <mat-option value="four">Primary Four</mat-option>
+        <mat-option value="five">Primary Five</mat-option>
+        <mat-option value="six">Primary Six</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+      <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button color="warn" (click)="onNoClick()">Cancele</button>
+      <button mat-button type="submit" color="primary" [disabled]="addStudentForm.invalid">Submit</button>
+    </div>
+  </form>
 </div>
-

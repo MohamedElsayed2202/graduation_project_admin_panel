@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  StudentApi: 'http://localhost:8080/api/v1/student',
+  TeacherApi: 'http://localhost:8080/api/v1/teacher',
+  GradeApi: 'http://localhost:8080/api/v1/grade'
 };
 
 /*
