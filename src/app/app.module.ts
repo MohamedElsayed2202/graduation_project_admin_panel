@@ -12,6 +12,8 @@ import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { StudentsComponent, AddStudentForm } from './components/students/students.component';
 import { EventsComponent } from './components/events/events.component';
 import { CardEventComponent } from './components/card-event/card-event.component';
+import { TeacherComponent,AddTeacherForm } from './components/teacher/teacher.component';
+import { GradeComponent } from './components/grade/grade.component';
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { CardEventComponent } from './components/card-event/card-event.component
     AddStudentForm,
     EventsComponent,
     CardEventComponent
+    TeacherComponent,
+    AddTeacherForm,
+    GradeComponent
   ],
   imports: [
     BrowserModule,
