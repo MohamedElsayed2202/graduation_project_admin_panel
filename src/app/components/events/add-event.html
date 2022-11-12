@@ -29,11 +29,11 @@
 
       <div class="mb-3">
         <label for="formFile" class="form-label">Default file input example</label>
-        <input class="form-control" type="file" id="formFile">
+        <input class="form-control" type="file" id="formFile" formControlName="imageName" (change)="change($event)">
       </div>
 
     <div mat-dialog-actions>
-      <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+      <button mat-button type="button" color="warn" (click)="onNoClick()">Cancel</button>
       <button mat-button type="submit" color="primary" [disabled]="addeventForm.invalid">Submit</button>
     </div>
   </form>

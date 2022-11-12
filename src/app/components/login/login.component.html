@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-center align-items-center w-100 h-100">
           <div class="example-container">
             <h1 class="text-center fw-bolder pb-3">Login</h1>
-            <form  [formGroup]="adminLoginForm" >
+            <form  [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
               <mat-form-field appearance="fill" class="mb-2">
                 <mat-label>Enter your email</mat-label>
                 <input matInput placeholder="pat@example.com" formControlName="email" required>
@@ -19,7 +19,7 @@
               <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
             </mat-form-field>
             <br>
-            <button mat-flat-button class="btn-login">Login</button>
+            <button mat-flat-button type="submit" class="btn-login">Login</button>
             </form>
         </div>
         </div>

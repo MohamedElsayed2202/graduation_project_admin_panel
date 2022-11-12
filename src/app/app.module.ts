@@ -15,6 +15,7 @@ import { EventsComponent,AddEventForm } from './components/events/events.compone
 import { CardEventComponent } from './components/card-event/card-event.component';
 import { TeacherComponent,AddTeacherForm } from './components/teacher/teacher.component';
 import { GradeComponent } from './components/grade/grade.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -30,7 +31,8 @@ import { GradeComponent } from './components/grade/grade.component';
     CardEventComponent,
     TeacherComponent,
     AddTeacherForm,
-    GradeComponent
+    GradeComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

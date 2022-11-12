@@ -1,0 +1,35 @@
+<section class="h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7 col-8">
+            <div class="row ">
+                <h3>Profile info</h3>
+            <mat-form-field appearance="fill" class="full-width mb-2">
+                <mat-label> Name</mat-label>
+                <input matInput formControlName="name" >
+                <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
+              </mat-form-field>
+          
+              <mat-form-field appearance="fill" class="mb-2 full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" required >
+                <mat-error *ngIf="formControlles['email'].invalid">{{getEmailErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="fill" class="full-width mb-2">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+                <button mat-icon-button type="button" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="formControlles['password'].invalid">{{getPasswordErrorMessage()}}</mat-error>
+              </mat-form-field>
+              <div>
+                <button mat-raised-button type="button" color="primary" (click)="enable()" [hidden]="edite" >Edite</button>
+                <button mat-raised-button type="button" color="warn" (click)="cancle()" [hidden]="!edite" class="me-1">Cancle</button>
+                <button mat-raised-button type="submit" color="accent" [hidden]="!edite">Submit</button>
+              </div>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   adminLoginForm: FormGroup;
   hide = true;
-  constructor() {
+  constructor(private userService: UserService) {
     
     this.adminLoginForm = new FormGroup({
       email: new FormControl("",[Validators.required, Validators.email]),
@@ -40,4 +41,11 @@ export class LoginComponent implements OnInit {
     return ''
   }
 
+  onSubmit():void{
+    const user = {
+      email: this.adminLoginForm.controls['email'].value,
+      password: this.adminLoginForm.controls['password'].value,
+    };
+    this.userService.login(user);
+  }
 }
