@@ -1,0 +1,170 @@
+<h1 mat-dialog-title>Add New TimeTable</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addTableForm" class="mb-3">
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Teacher Name</mat-label>
+      <mat-select formControlName="id">
+        <mat-option *ngFor="let teacher of teachers" [value]="teacher._id">{{teacher.name}}</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Subject 1</mat-label>
+      <mat-select formControlName="subject">
+        <mat-option value="arabic">Arabic</mat-option>
+        <mat-option value="english">English</mat-option>
+        <mat-option value="math">Math</mat-option>
+        <mat-option value="sience">Sience</mat-option>
+        <mat-option value="soclia">Socila studies</mat-option>
+        <mat-option value="computer">Computer</mat-option>
+        <mat-option value="frinsh">Frinsh</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Day</mat-label>
+      <mat-select formControlName="day">
+        <mat-option value="sun">Sunday </mat-option>
+        <mat-option value="mon">Monday</mat-option>
+        <mat-option value="tue">Tuseday</mat-option>
+        <mat-option value="wed">Wedensday</mat-option>
+        <mat-option value="thu">Thursday</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 1</mat-label>
+      <mat-select formControlName="1">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 2</mat-label>
+      <mat-select formControlName="2">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 3</mat-label>
+      <mat-select formControlName="3">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 4</mat-label>
+      <mat-select formControlName="4">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 5</mat-label>
+      <mat-select formControlName="5">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Class 6</mat-label>
+      <mat-select formControlName="6">
+        <mat-option value="p1">Primary one </mat-option>
+        <mat-option value="p2">Primary Two</mat-option>
+        <mat-option value="p3">Primary Three</mat-option>
+        <mat-option value="p4">Primary Four</mat-option>
+        <mat-option value="p5">Primary Five</mat-option>
+        <mat-option value="p6">Primary Six</mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="formControlles['grade'].invalid">{{getGradeErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+
+    <button mat-raised-button type="button" (click)="addDay()" color="primary">Add</button>
+
+  </form>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-12 mb-3">
+    <ng-container matColumnDef="day">
+      <th mat-header-cell *matHeaderCellDef> Day </th>
+      <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="1">
+      <th mat-header-cell *matHeaderCellDef> 1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['1']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="2">
+      <th mat-header-cell *matHeaderCellDef> 2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['2']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="3">
+      <th mat-header-cell *matHeaderCellDef> 3 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['3']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="4">
+      <th mat-header-cell *matHeaderCellDef> 4 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['4']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="5">
+      <th mat-header-cell *matHeaderCellDef> 5 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['5']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="6">
+      <th mat-header-cell *matHeaderCellDef> 6 </th>
+      <td mat-cell *matCellDef="let element"> {{element.classes['6']}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="editeDay(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <div class="mb-2">
+    <button mat-raised-button type="button" [disabled]="table.timeTable.length<5" (click)="save()"
+      color="primary">Save</button>
+    <button mat-raised-button type="button" class="ms-3" [hidden]="data.table === null" (click)="delete()"
+      color="warn">Delete</button>
+  </div>
+
+
+</div>

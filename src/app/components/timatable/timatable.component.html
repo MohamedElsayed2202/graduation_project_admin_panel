@@ -1,0 +1,127 @@
+<mat-tab-group color="accent">
+    <mat-tab label="Students" class="half-width">
+        <ng-container *ngIf="classTables.length === 0">
+            <div class="container h-100">
+                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+                    <button mat-raised-button color="primary" (click)="openClassDialog()" class="fit-content">Add Table</button>
+                    <p class="text-secondary">No tables to show pleas add table first</p>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="classTables.length > 0">
+            <button mat-fab color="primary" (click)="openClassDialog()" class="fab-pos">
+                <mat-icon>add</mat-icon>
+            </button>
+            <div class="row justify-content-center align-items-center w-100 h-100" *ngFor="let table of classTables;  index as i">
+                <h3 class="text-center col-12 mt-5">Primary {{table.grade}}</h3>
+                <table mat-table [dataSource]="classesDataSources[i]" (dblclick)="openEditeClassDialog(table)" class="mat-elevation-z8 col-10 mb-3">
+                    <ng-container matColumnDef="day">
+                        <th mat-header-cell *matHeaderCellDef> Day </th>
+                        <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="8-8.45">
+                        <th mat-header-cell *matHeaderCellDef> 8-8.45 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['1']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="8.45-9.30">
+                        <th mat-header-cell *matHeaderCellDef> 8.45-9.30 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['2']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="9.30-10.15">
+                        <th mat-header-cell *matHeaderCellDef> 9.30-10.15 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['3']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="10.15-11">
+                        <th mat-header-cell *matHeaderCellDef> 10.15-11 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['4']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="11.15-12">
+                        <th mat-header-cell *matHeaderCellDef> 11.15-12 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['5']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="12-12.45">
+                        <th mat-header-cell *matHeaderCellDef> 12-12.45 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['6']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="12.45-1.30">
+                        <th mat-header-cell *matHeaderCellDef> 12.45-1.30 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subjects['7']}} </td>
+                    </ng-container>
+            
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                </table>
+            </div>
+        </ng-container>
+    </mat-tab>
+    <mat-tab label="Teachers">
+        <ng-container *ngIf="teachersTables.length === 0">
+            <div class="container h-100">
+                <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+                    <button mat-raised-button color="primary" (click)="openTeacherDialog()" class="fit-content">Add Table</button>
+                    <p class="text-secondary">No tables to show pleas add table first</p>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="teachersTables.length > 0">
+            <button mat-fab color="primary" (click)="openTeacherDialog()" class="fab-pos">
+                <mat-icon>add</mat-icon>
+            </button>
+            <div class="row justify-content-center align-items-center w-100 h-100" *ngFor="let table of teachersTables;  index as i">
+                <h3 class="text-center col-12 mt-5">{{table.subject}}</h3>
+                <table mat-table [dataSource]="teachersDataSources[i]" (dblclick)="openEditeTeacherDialog(table)" class="mat-elevation-z8 col-10 mb-3">
+                    <ng-container matColumnDef="day">
+                        <th mat-header-cell *matHeaderCellDef> Day </th>
+                        <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="1">
+                        <th mat-header-cell *matHeaderCellDef> 1 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['1']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="2">
+                        <th mat-header-cell *matHeaderCellDef> 2 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['2']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="3">
+                        <th mat-header-cell *matHeaderCellDef> 3 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['3']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="4">
+                        <th mat-header-cell *matHeaderCellDef> 4 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['4']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="5">
+                        <th mat-header-cell *matHeaderCellDef> 5 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['5']}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="6">
+                        <th mat-header-cell *matHeaderCellDef> 6 </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classes['6']}} </td>
+                    </ng-container>
+            
+            
+                    <tr mat-header-row *matHeaderRowDef="teachersDisplayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: teachersDisplayedColumns;"></tr>
+            
+                </table>
+            </div>
+        </ng-container>
+    </mat-tab>
+</mat-tab-group>

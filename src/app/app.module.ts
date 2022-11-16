@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashbordComponent } from './components/dashbord/dashbord.component';
+import { DashbordComponent,DeleteDialog } from './components/dashbord/dashbord.component';
 import { StudentsComponent, AddStudentForm } from './components/students/students.component';
 
 import { EventsComponent,AddEventForm } from './components/events/events.component';
@@ -16,6 +16,7 @@ import { CardEventComponent } from './components/card-event/card-event.component
 import { TeacherComponent,AddTeacherForm } from './components/teacher/teacher.component';
 import { GradeComponent } from './components/grade/grade.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { TimatableComponent, AddClassTableForm, AddTeacherTableForm } from './components/timatable/timatable.component';
 
 
 
@@ -24,6 +25,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppComponent,
     LoginComponent,
     DashbordComponent,
+    DeleteDialog,
     StudentsComponent,
     AddStudentForm,
     EventsComponent,
@@ -33,6 +35,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     AddTeacherForm,
     GradeComponent,
     ProfileComponent,
+    TimatableComponent,
+    AddClassTableForm,
+    AddTeacherTableForm
   ],
   imports: [
     BrowserModule,

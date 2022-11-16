@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnInit, OnDestroy} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashbordComponent implements OnInit, OnDestroy{
   mobileQuery: MediaQueryList;
+  pageTitle: string = 'Students';
   private _mobileQueryListener: () => void;
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private userServic: UserService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -26,4 +28,16 @@ export class DashbordComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
   }
 
+  changeTitle(title: string):void{
+    this.pageTitle = title;
+  }
+}
+
+@Component({
+  selector: 'delete.confirmation',
+  templateUrl: './delete.confirmation.html',
+  styleUrls: ['./dashbord.component.scss']
+})
+export class DeleteDialog{
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {message: string}){}
 }

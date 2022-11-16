@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatTableDataSource } from '@angular/material/table';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { TeacherService } from 'src/app/services/teacher.service';
+import { DeleteDialog } from '../dashbord/dashbord.component';
 import { AddStudentForm } from '../students/students.component';
 
 
@@ -13,7 +14,7 @@ import { AddStudentForm } from '../students/students.component';
   styleUrls: ['./teacher.component.scss']
 })
 export class TeacherComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'name', 'email', 'action'];
+  displayedColumns: string[] = ['name', 'email', 'subject','action'];
   dataSource = new MatTableDataSource<Teacher>([]);
   constructor(public dilaog: MatDialog, private teacherService: TeacherService) { }
 
@@ -32,7 +33,15 @@ export class TeacherComponent implements OnInit {
   }
 
   delete(id: string){
-    this.teacherService.delete(id);
+    const ref = this.dilaog.open(DeleteDialog, {
+      data: { message: 'You are attempting to delete this teacher are you sure that you want to delete it' }
+    });
+
+    ref.afterClosed().subscribe(res => {
+      if (res === true) {
+        this.teacherService.delete(id);
+      }
+    })
   }
 
   applyFilter(event: Event) {
@@ -61,14 +70,16 @@ export class AddTeacherForm{
     if(data.teacher === null){
       this.addTeacherForm = new FormGroup({
         name: new FormControl("", Validators.required),
+        subject: new FormControl("", Validators.required),
         email: new FormControl("",[Validators.required, Validators.email]),
-        password: new FormControl("", Validators.required)
+        password: new FormControl("", [Validators.required, Validators.minLength(8)])
       })
     }else{
       this.addTeacherForm = new FormGroup({
         name: new FormControl(data.teacher.name, Validators.required),
+        subject: new FormControl(data.teacher.subject, Validators.required),
         email: new FormControl(data.teacher.email,[Validators.required, Validators.email]),
-        password: new FormControl(data.teacher.password, Validators.required)
+        password: new FormControl(data.teacher.password, [Validators.required, Validators.minLength(8)])
       })
     }
   }
@@ -80,12 +91,21 @@ export class AddTeacherForm{
     return this.addTeacherForm.controls['name'].hasError('required')? 'You must enter a value': '';
   }
   getEmailErrorMessage() {
-   return this.addTeacherForm.controls['email'].hasError('required')?'You must enter a value': '';
-
+    if(this.addTeacherForm.controls['email'].hasError('required')){
+      return 'You must enter a value'
+    }
+   return this.addTeacherForm.controls['email'].hasError('email')?'Not a valid email': '';
   }
 
   getPasswordErrorMessage() {
-    return this.addTeacherForm.controls['password'].hasError('required') ?'You must enter a value' : '';
+    if(this.addTeacherForm.controls['password'].hasError('required')){
+      return 'You must enter a value'
+    }
+    return this.addTeacherForm.controls['password'].hasError('minlength') ?'You must enter at least 8 characters' : '';
+  }
+
+  getSubjectErrorMessage() {
+    return this.addTeacherForm.controls['subject'].hasError('required') ?'You must enter a value' : '';
   }
 
   onSubmit(): void{
@@ -93,7 +113,8 @@ export class AddTeacherForm{
       let teacher: Teacher = {
         name: this.addTeacherForm.controls['name'].value,
         email: this.addTeacherForm.controls['email'].value,
-        password: this.addTeacherForm.controls['password'].value
+        password: this.addTeacherForm.controls['password'].value,
+        subject: this.addTeacherForm.controls['subject'].value
       }
       this.teacherService.addTeacher(teacher);
       this.dialogRef.close();
@@ -103,7 +124,7 @@ export class AddTeacherForm{
         name: this.addTeacherForm.controls['name'].value,
         email: this.addTeacherForm.controls['email'].value,
         password: this.addTeacherForm.controls['password'].value,
-        type: this.data.teacher.type
+        subject: this.addTeacherForm.controls['subject'].value
       }
       this.teacherService.updateTeacher(teacher);
       this.dialogRef.close();

@@ -1,15 +1,14 @@
 <mat-card class="example-card">
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img mat-card-image src="http://localhost:8080/{{item.image}}"alt="Photo of a event">
     <mat-card-header>
-        <mat-card-title>Title</mat-card-title>
-        <mat-card-subtitle>17/11/2022</mat-card-subtitle>
+        <mat-card-title>{{item.title}}</mat-card-title>
+        <mat-card-subtitle>{{item.date|date:'shortDate'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+        {{item.description}}
       </p>
+      <a [href]="item.location.url" target="_blank">{{item.location.name}}</a>
     </mat-card-content>
     <mat-card-actions>
       <div class="d-flex justify-content-between">
@@ -17,8 +16,8 @@
         <button mat-icon-button [mat-menu-trigger-for]="aboveMenu" aria-label="Example icon button with a vertical three dot icon">
           <mat-icon>more_vert</mat-icon>
           <mat-menu #aboveMenu="matMenu" yPosition="above">
-            <button mat-menu-item>Edite</button>
-            <button mat-menu-item>Delete</button>
+            <button mat-menu-item (click)="openDialog()">Edite</button>
+            <button mat-menu-item (click)="delete()">Delete</button>
           </mat-menu>
         </button>
       </div>

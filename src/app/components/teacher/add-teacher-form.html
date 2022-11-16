@@ -8,6 +8,21 @@
       <mat-error *ngIf="formControlles['name'].invalid">{{getNameErrorMessage()}}</mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill" class="full-width mb-2">
+      <mat-label>Subject</mat-label>
+      <mat-select formControlName="subject"> 
+        <mat-option value="arabic">Arabic</mat-option>
+        <mat-option value="english">English</mat-option>
+        <mat-option value="math">Math</mat-option>
+        <mat-option value="sience">Sience</mat-option>
+        <mat-option value="soclia">Socila studies</mat-option>
+        <mat-option value="computer">Computer</mat-option>
+        <mat-option value="frinsh">Frinsh</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControlles['subject'].invalid">{{getSubjectErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+
     <mat-form-field appearance="fill" class="mb-2 full-width">
       <mat-label>Email</mat-label>
       <input matInput type="email" placeholder="pat@example.com" formControlName="email" required>

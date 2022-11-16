@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
     this.userForm.controls['name'].enable();
     this.userForm.controls['email'].enable();
     this.userForm.controls['password'].enable();
-    console.log(this.edite);
   }
   cancle() {
     this.edite = false;

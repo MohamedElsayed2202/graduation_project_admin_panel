@@ -3,5 +3,10 @@ export interface Events {
     title: string,
     date: string,
     description:string,
+    location:{
+        name:string,
+        url?:string
+    }
+    grade:string,
     image?:string
 }

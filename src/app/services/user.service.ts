@@ -39,7 +39,6 @@ export class UserService {
   updateUser(user: any): void{
     this.httpClient.put<any>(`${environment.AdminApi}/${user._id}`, JSON.stringify(user), this.headerOptions)
     .subscribe(value => {
-      console.log(value);
       this.user.next(value);
     })
   }

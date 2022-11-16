@@ -9,7 +9,8 @@ export const environment = {
   GradeApi: 'http://localhost:8080/api/v1/grade',
   AdminApi: 'http://localhost:8080/api/v1/admin',
   EventApi: 'http://localhost:8080/api/v1/events',
-
+  ClassTable: 'http://localhost:8080/api/v1/classtimetable',
+  TeacherTable: 'http://localhost:8080/api/v1/teachertimetable',
 };
 
 /*
