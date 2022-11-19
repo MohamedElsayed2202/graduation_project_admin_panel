@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Teacher } from 'src/app/interfaces/teacher';
 import { TeacherService } from 'src/app/services/teacher.service';
@@ -17,6 +19,25 @@ export class TeacherComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'subject','action'];
   dataSource = new MatTableDataSource<Teacher>([]);
   constructor(public dilaog: MatDialog, private teacherService: TeacherService) { }
+
+  private paginator!: MatPaginator;
+  private sort!: MatSort;
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+  }
 
   openDialog(): void{
     const dialogRef = this.dilaog.open(AddTeacherForm,{

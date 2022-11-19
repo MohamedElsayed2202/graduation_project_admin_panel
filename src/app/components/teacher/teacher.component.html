@@ -13,13 +13,13 @@
                 <mat-icon>add</mat-icon>
             </button>
             <div class="d-flex justify-content-between align-items-center">
-                <mat-form-field appearance="standard" class="col-12">
+                <mat-form-field appearance="fill" class="col-12">
                     <mat-label>Filter</mat-label>
                     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
                 </mat-form-field>
             </div>
 
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-12">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 col-12">
 
                 <!-- <ng-container matColumnDef="ID">
                     <th mat-header-cell *matHeaderCellDef>ID </th>
@@ -27,17 +27,17 @@
                 </ng-container> -->
 
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef> Email </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="subject">
-                    <th mat-header-cell *matHeaderCellDef> Subject </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject </th>
                     <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
                 </ng-container>
 
@@ -57,6 +57,9 @@
                     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                 </tr>
             </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements" class="mat-elevation-z8 col-12">
+            </mat-paginator>
             <mat-menu #menu="matMenu">
                 <ng-template matMenuContent let-teacher="teacher">
                     <button mat-menu-item (click)="update(teacher)">Update</button>

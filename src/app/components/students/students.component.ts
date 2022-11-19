@@ -1,6 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/interfaces/student';
 import { StudentService } from 'src/app/services/student.service';
@@ -14,8 +16,30 @@ import { DeleteDialog } from '../dashbord/dashbord.component';
 export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'grade', 'action'];
   dataSource = new MatTableDataSource<Student>([]);
-
+  
   constructor(public dilaog: MatDialog, private studentService: StudentService) { }
+
+  private paginator!: MatPaginator;
+  private sort!: MatSort;
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    // if (this.paginator && this.sort) {
+    //   this.applyFilter();
+    // }
+  }
 
   openDialog(): void {
     const dialogRef = this.dilaog.open(AddStudentForm, {
@@ -27,6 +51,9 @@ export class StudentsComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   update(student: Student) {
